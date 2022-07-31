@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @DependsOn("dataTable")
 public class IndexFileLoader {
 
-    @PostConstruct
+//    @PostConstruct
     public void init() {
 
         List<String> adPlanStrings = loadDumpData(
