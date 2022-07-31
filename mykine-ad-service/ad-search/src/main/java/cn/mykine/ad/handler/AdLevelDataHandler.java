@@ -26,7 +26,7 @@ import java.util.Set;
 /**
  * 1. 索引之间存在着层级的划分, 也就是依赖关系的划分
  * 2. 加载全量索引其实是增量索引 "添加" 的一种特殊实现
- * Created by Qinyi.
+ * Created by Jo@mykine
  */
 @Slf4j
 public class AdLevelDataHandler {
