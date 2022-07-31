@@ -15,9 +15,9 @@ spring:
       hibernate.format_sql: true
     open-in-view: false
   datasource:
-    url: jdbc:mysql://192.168.10.98:3306/mykine_ad_data?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/mykine_ad_data?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
     username: root
-    password: jyIsTpYmq7%Z
+    password: 123456
     tomcat:
       max-active: 4
       min-idle: 2
@@ -44,10 +44,10 @@ management:
 
 adconf:
   mysql:
-    host: 192.168.10.98
+    host: 127.0.0.1
     port: 3306
     username: root
-    password: jyIsTpYmq7%Z
+    password: 123456
     binlogName: mysql-bin.000001
     position: 154
 

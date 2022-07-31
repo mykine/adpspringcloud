@@ -23,7 +23,7 @@ public class TableTemplate {
     private Map<OpType, List<String>> opTypeFieldSetMap = new HashMap<>();
 
     /**
-     * 字段索引 -> 字段名
+     * binlog数据中字段数组索引 -> 字段名
      * */
     private Map<Integer, String> posMap = new HashMap<>();
 }

@@ -46,11 +46,9 @@ public class TemplateHolder {
     }
 
     private void loadJson(String path) {
-
-        ClassLoader cl = Thread.currentThread().getContextClassLoader();
-        InputStream inStream = cl.getResourceAsStream(path);
-
         try {
+            ClassLoader cl = Thread.currentThread().getContextClassLoader();
+            InputStream inStream = cl.getResourceAsStream(path);
             Template template = JSON.parseObject(
                     inStream,
                     Charset.defaultCharset(),
@@ -59,7 +57,7 @@ public class TemplateHolder {
             this.template = ParseTemplate.parse(template);
             loadMeta();
         } catch (IOException ex) {
-            log.error(ex.getMessage());
+            log.error("json file parse error:"+ex.getMessage());
             throw new RuntimeException("fail to parse json file");
         }
     }
