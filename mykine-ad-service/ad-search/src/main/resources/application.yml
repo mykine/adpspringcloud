@@ -48,8 +48,8 @@ adconf:
     port: 3306
     username: root
     password: 123456
-    binlogName: mysql-bin.000001
-    position: 154
+    binlogName: binlog.000002
+    position: 2979
 
   kafka:
     topic: ad-search-mysql-data
