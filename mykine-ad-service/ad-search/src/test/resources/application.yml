@@ -7,7 +7,6 @@ spring:
   application:
     name: eureka-client-ad-search
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5Dialect
     show-sql: true
     hibernate:
       ddl-auto: none
@@ -22,15 +21,12 @@ spring:
       max-active: 4
       min-idle: 2
       initial-size: 2
-  kafka:
-    bootstrap-servers: 192.168.10.135:9092,192.168.10.136:9092,192.168.10.137:9092
-    listener:
-      concurrency: 4
 
 eureka:
   client:
     service-url:
       defaultZone: http://192.168.10.135:8000/eureka/,http://192.168.10.136:8000/eureka/,http://192.168.10.137:8000/eureka/
+    enabled: false
 
 feign:
   hystrix:
@@ -48,8 +44,8 @@ adconf:
     port: 3306
     username: root
     password: 123456
-    binlogName: binlog.000002
-    position: 2979
+    binlogName: ""
+    position: -1
 
   kafka:
     topic: ad-search-mysql-data
