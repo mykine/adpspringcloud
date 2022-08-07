@@ -101,11 +101,11 @@ public class SearchTest {
         return new Device(
                 "iphone",
                 "0xxxxx",
-                "127.0.0.1",
+                "192.168.10.98",
                 "x",
                 "1080 720",
                 "1080 720",
-                "123456789"
+                "jyIsTpYmq7%Z789"
 
         );
     }

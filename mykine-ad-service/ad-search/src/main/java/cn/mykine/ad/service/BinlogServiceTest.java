@@ -36,10 +36,10 @@ public class BinlogServiceTest {
     public static void main(String[] args) throws Exception {
 
         BinaryLogClient client = new BinaryLogClient(
-                "127.0.0.1",
+                "192.168.10.98",
                 3306,
                 "root",
-                "123456"
+                "jyIsTpYmq7%Z"
         );
 //        client.setBinlogFilename("binlog.000037");
 //        client.setBinlogPosition();

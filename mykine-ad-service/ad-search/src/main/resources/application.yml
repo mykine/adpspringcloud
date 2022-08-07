@@ -15,9 +15,9 @@ spring:
       hibernate.format_sql: true
     open-in-view: false
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/mykine_ad_data?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://192.168.10.98:3306/mykine_ad_data?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
     username: root
-    password: 123456
+    password: jyIsTpYmq7%Z
     tomcat:
       max-active: 4
       min-idle: 2
@@ -44,12 +44,12 @@ management:
 
 adconf:
   mysql:
-    host: 127.0.0.1
+    host: 192.168.10.98
     port: 3306
     username: root
-    password: 123456
-    binlogName: binlog.000002
-    position: 2979
+    password: jyIsTpYmq7%Z
+    binlogName: mysql-bin.000007
+    position: 154
 
   kafka:
     topic: ad-search-mysql-data
