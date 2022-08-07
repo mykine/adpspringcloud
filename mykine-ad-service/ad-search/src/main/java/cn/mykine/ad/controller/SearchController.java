@@ -11,6 +11,7 @@ import cn.mykine.ad.search.vo.SearchResponse;
 import cn.mykine.ad.vo.CommonResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +38,13 @@ public class SearchController {
         this.restTemplate = restTemplate;
         this.sponsorClient = sponsorClient;
         this.search = search;
+    }
+
+    @GetMapping("/test")
+    public String getAdPlans(
+    ) {
+        log.info("ad-search: test ");
+        return sponsorClient.test();
     }
 
     @PostMapping("/fetchAds")
@@ -66,7 +74,7 @@ public class SearchController {
         log.info("ad-search: getAdPlansByRibbon -> {}",
                 JSON.toJSONString(request));
         return restTemplate.postForEntity(
-                "http://eureka-client-ad-sponsor/ad-sponsor/get/adPlan",
+                "http://ad-sponsor/ad-sponsor/get/adPlan",
                 request,
                 CommonResponse.class
         ).getBody();

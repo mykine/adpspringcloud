@@ -17,6 +17,13 @@ public class SponsorClientHystrix implements SponsorClient {
     public CommonResponse<List<AdPlan>> getAdPlans(
             AdPlanGetRequest request) {
         return new CommonResponse<>(-1,
-                "eureka-client-ad-sponsor error");
+                "ad-sponsor error");
     }
+
+    @Override
+    public String test() {
+        return "requst ad-sponsor test happens error";
+    }
+
+
 }

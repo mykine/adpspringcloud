@@ -5,7 +5,7 @@ server:
 
 spring:
   application:
-    name: eureka-client-ad-search
+    name: ad-search
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     show-sql: true

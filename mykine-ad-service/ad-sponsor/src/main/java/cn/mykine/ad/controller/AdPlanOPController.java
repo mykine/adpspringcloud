@@ -35,6 +35,12 @@ public class AdPlanOPController {
         return adPlanService.createAdPlan(request);
     }
 
+    @GetMapping("/test")
+    public String test() throws AdException {
+        log.info("ad-sponsor: test");
+        return "test hello world!!! from ad-sponsor";
+    }
+
     @PostMapping("/get/adPlan")
     public List<AdPlan> getAdPlanByIds(
             @RequestBody AdPlanGetRequest request) throws AdException {

@@ -5,7 +5,7 @@ server:
 
 spring:
   application:
-    name: eureka-client-ad-search
+    name: ad-search
   jpa:
     show-sql: true
     hibernate:
