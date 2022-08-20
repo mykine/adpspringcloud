@@ -3,6 +3,7 @@ package cn.mykine.ad.sender.kafka;
 import com.alibaba.fastjson.JSON;
 import cn.mykine.ad.mysql.dto.MySqlRowData;
 import cn.mykine.ad.sender.ISender;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +16,7 @@ import java.util.Optional;
 /**
  * Created by Jo@mykine
  */
+@Slf4j
 @Component("kafkaSender")
 public class KafkaSender implements ISender {
 
@@ -34,6 +36,7 @@ public class KafkaSender implements ISender {
         kafkaTemplate.send(
                 topic, JSON.toJSONString(rowData)
         );
+        log.info("kafka sender topic:{}, msg :{}",JSON.toJSONString(rowData));
     }
 
     @KafkaListener(topics = {"ad-search-mysql-data"}, groupId = "ad-search")
@@ -46,6 +49,7 @@ public class KafkaSender implements ISender {
                     message.toString(),
                     MySqlRowData.class
             );
+            log.info("kafka consumer processMysqlRowData: {}",JSON.toJSONString(rowData));
             System.out.println("kafka processMysqlRowData: " +
             JSON.toJSONString(rowData));
         }
