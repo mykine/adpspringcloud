@@ -36,12 +36,14 @@ public class SingletonExample3 {
                  * 上面3个指令没有Happens-Before要求，多线程情况下，可能会发生指令重排
                  * 例如顺序变成：指令1 -> 指令3 -> 指令2
                  * 线程A执行到指令2时,instance不为null了，
-                 * 此时线程B刚好直行到 if(null==instance) 这一行，
+                 * 此时线程B刚好直行到第一次的 if(null==instance) ，
                  * 发现false，就直接return instance
                  * 实际线程A还未执行指令3，也就对象还未完成初始化，线程B在使用实例时就会出错
                  * 故这种情景下虽然使用同步锁，但仍然线程不安全
                  * */
-                instance = new SingletonExample3();
+                if(null==instance){
+                    instance = new SingletonExample3();
+                }
             }
         }
         return instance;
