@@ -1,6 +1,6 @@
 package cn.mykine.ad.study.juc;
 
-import cn.mykine.ad.study.annoations.NotThreadSafe;
+import cn.mykine.ad.study.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ExecutorService;
@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
  * 单例的实现-懒汉模式-优化-volatile+双重检测同步锁实现-线程安全
  *
  * */
-@NotThreadSafe
+@ThreadSafe
 @Slf4j
 public class SingletonExample4 {
 
