@@ -15,7 +15,7 @@ public class CycleBarrierAtSameTimeBegin {
     final static Logger logger = LoggerFactory.getLogger(CycleBarrierAtSameTimeBegin.class);
 
     static CyclicBarrier cyclicBarrier
-            = new CyclicBarrier(3);//设置每次达到5个线程就唤醒这个3个线程开始执行任务
+            = new CyclicBarrier(3);//设置每次达到3个线程就唤醒这个3个await了的线程开始执行任务
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newCachedThreadPool();
