@@ -18,7 +18,7 @@ public class FutureTaskTest {
                 return Thread.currentThread().getName()+" result!";
             }
         });
-        executorService.submit(futureTask);
+        executorService.submit(futureTask);//结果会直接存储在futureTask中的Callable对象中
         executorService.shutdown();
         System.out.println(Thread.currentThread().getName()+" main do sth...");
         Thread.sleep(2);
