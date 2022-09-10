@@ -5,7 +5,7 @@ import java.util.concurrent.*;
 /**
  * 通过Callable+Future实现获取多线程异步处理结果
  * */
-public class CallableTest implements Callable<String> {
+public class Callable_FutureTest implements Callable<String> {
 
     @Override
     public String call() throws InterruptedException {
@@ -17,7 +17,7 @@ public class CallableTest implements Callable<String> {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         ExecutorService executorService = Executors.newCachedThreadPool();
         //使用Callable对象存放线程处理方法的返回值
-        CallableTest callableTest = new CallableTest();
+        Callable_FutureTest callableTest = new Callable_FutureTest();
         //使用Future对象接收Callable存储的线程处理完后的返回值
         Future<String> future =executorService.submit(callableTest);
         executorService.shutdown();
