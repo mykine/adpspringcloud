@@ -38,7 +38,7 @@ import java.util.concurrent.locks.ReentrantLock;
  *   cas函数会将a1值与a在内存中当前真实的值a3比较，相等就修改成目标值a2，返回true,
  *   不相等就说明a被其他线程修改过了，就直接返回false
  *  5.CAS的原子操作原理：由CPU指令保证原子性，
- *   JAVA中提供了Unsafe类去调用底层的CPU相关CAS指令
+ *   JAVA中提供了Unsafe类去调用底层的CPU指令
  *
  *  6.CAS和AQS的关系：
  *    AQS是CAS的一种实现应用，AQS的锁互斥功能中的加锁的原子性操作就是通过CAS实现的，
