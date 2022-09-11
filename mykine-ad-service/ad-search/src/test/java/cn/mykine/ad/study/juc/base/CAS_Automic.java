@@ -50,6 +50,7 @@ public class CAS_Automic {
   public static void main(String[] args) {
     ReentrantLock lock  = new ReentrantLock(false);
     lock.lock();
+    lock.unlock();
   }
 
 }
