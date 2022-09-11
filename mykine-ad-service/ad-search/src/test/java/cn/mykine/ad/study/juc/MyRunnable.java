@@ -21,7 +21,7 @@ import lombok.SneakyThrows;
  *         RUNNABLE: 可执行状态，从RUNNABLE状态因thread.start()、object.notify()、object.notifyAll()、thread.sleep()、lock.unlock()、资源释放后到达可执行状态
  *         WAITING:等待状态，从RUNNABLE状态因wait()造成的等待
  *         TIME_WAITING:一段时间的等待状态,从RUNNABLE状态因thread.sleep()造成的一段时间内等待
- *         BLOCKED:阻塞状态,从RUNNABLE状态因lock()、synchronized进入阻塞状态
+ *         BLOCKED:阻塞状态,从RUNNABLE状态因synchronized进入阻塞状态
  *         TERMINTED:任务完成状态，从RUNNABLE状态顺利执行完毕进行的终结状态
  *
  * */
