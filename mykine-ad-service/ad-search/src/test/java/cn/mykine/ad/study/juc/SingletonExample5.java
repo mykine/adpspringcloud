@@ -20,6 +20,8 @@ public class SingletonExample5 {
     private SingletonExample5(){
 //      log.info("{} 初始化实例 ",Thread.currentThread().getName());
         System.out.println(Thread.currentThread().getName()+" 初始化实例");
+        String s = "123";
+       char[] ss=  s.toCharArray();
     }
 
     public static SingletonExample5 getInstance(){

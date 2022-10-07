@@ -1,0 +1,65 @@
+server:
+  port: 7003
+  servlet:
+    context-path: /o2o
+
+spring:
+  application:
+    name: o2o
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.format_sql: true
+    open-in-view: false
+  datasource:
+    url: jdbc:mysql://192.168.10.98:3306/mykine_ad_data?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    username: root
+    password: jyIsTpYmq7%Z
+    tomcat:
+      max-active: 4
+      min-idle: 2
+      initial-size: 2
+  kafka:
+    bootstrap-servers: 192.168.10.135:9092,192.168.10.136:9092,192.168.10.137:9092
+    listener:
+      concurrency: 4
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.10.135:8000/eureka/,http://192.168.10.136:8000/eureka/,http://192.168.10.137:8000/eureka/
+
+feign:
+  hystrix:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+adconf:
+  mysql:
+    host: 192.168.10.98
+    port: 3306
+    username: root
+    password: jyIsTpYmq7%Z
+    binlogName: mysql-bin.000007
+    position: 154
+
+  kafka:
+    topic: o2o-data
+
+
+jwt:
+  key: c21hcnRybS1kZGRzbWFydHJtLWRkZHNtYXJ0cm0tZGRk
+  expirationSecs: 2592000
+
+commodity:
+  file:
+    json:
+      path: commodity_new.json
