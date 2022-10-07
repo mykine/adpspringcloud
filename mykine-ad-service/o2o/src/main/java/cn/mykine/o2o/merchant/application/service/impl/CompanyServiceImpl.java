@@ -47,4 +47,19 @@ public class CompanyServiceImpl implements CompanyService {
     }
     return res;
   }
+
+  @Override
+  public boolean addCompany(CompanyDto companyDto) {
+    Company company = new Company();
+    company.setId(companyDto.getId());
+    company.setName(companyDto.getName());
+    company.setLocation(companyDto.getLocation());
+    company.setProvinceId(companyDto.getProvinceId());
+    company.setProvinceName(companyDto.getProvinceName());
+    company.setCityId(companyDto.getCityId());
+    company.setCityName(companyDto.getCityName());
+    company.setServeStars(companyDto.getServeStars());
+    company.setTags(companyDto.getTags());
+    return companyRepository.addOneSync(company);
+  }
 }

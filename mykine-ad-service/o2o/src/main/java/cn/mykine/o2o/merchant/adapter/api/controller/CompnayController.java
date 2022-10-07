@@ -32,15 +32,32 @@ public class CompnayController {
   @RequestMapping(value = "/query", method = RequestMethod.GET)
   @ResponseBody
   public CommonResponse<List<CompanyDto>> query(@RequestParam String key) {
-    CommonResponse<List<CompanyDto>> res = CommonResponse.success(companyService.queryCompanies(key));
+    CommonResponse<List<CompanyDto>> res
+            = CommonResponse.success(companyService.queryCompanies(key));
     return res;
   }
 
+  @RequestMapping(value = "/addOne", method = RequestMethod.POST)
+  @ResponseBody
+  public CommonResponse<Boolean> addOne(@RequestBody  CompanyDto companyDto) {
+    Boolean res = companyService.addCompany(companyDto);
+    return CommonResponse.success(res);
+  }
+
+
   @RequestMapping(value = "/userTest", method = RequestMethod.GET)
   @ResponseBody
-  public CommonResponse<String> userTest( @RequestParam String openId) {
-
-    return CommonResponse.success("userTest:"+openId);
+  public CommonResponse<CompanyDto> userTest( @RequestParam String openId) {
+    CompanyDto obj = new CompanyDto();
+    obj.setTags("专用 测试");
+    obj.setName("门店A1");
+    obj.setProvinceId(440000);
+    obj.setProvinceName("广东省");
+    obj.setCityId(440300);
+    obj.setCityName("深圳市");
+    obj.setLocation("22.550012,113.939902");
+    obj.setServeStars("3.9");
+    return CommonResponse.success(obj);
   }
 
 }

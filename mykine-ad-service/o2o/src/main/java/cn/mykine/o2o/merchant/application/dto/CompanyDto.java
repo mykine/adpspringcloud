@@ -14,7 +14,11 @@ public class CompanyDto {
 
   private String location;
 
+  private Integer provinceId;
+
   private String provinceName;
+
+  private Integer cityId;
 
   private String cityName;
 
@@ -22,11 +26,15 @@ public class CompanyDto {
 
   private String serveStars;
 
+  public CompanyDto(){}
+
   public CompanyDto(Company company) {
     this.id = company.getId();
     this.name = company.getName();
     this.location = company.getLocation();
+    this.provinceId = company.getProvinceId();
     this.provinceName = company.getProvinceName();
+    this.cityId = company.getCityId();
     this.cityName = company.getCityName();
     this.tags = company.getTags();
     this.serveStars = company.getServeStars();
@@ -86,5 +94,21 @@ public class CompanyDto {
 
   public void setServeStars(String serveStars) {
     this.serveStars = serveStars;
+  }
+
+  public Integer getProvinceId() {
+    return provinceId;
+  }
+
+  public void setProvinceId(Integer provinceId) {
+    this.provinceId = provinceId;
+  }
+
+  public Integer getCityId() {
+    return cityId;
+  }
+
+  public void setCityId(Integer cityId) {
+    this.cityId = cityId;
   }
 }

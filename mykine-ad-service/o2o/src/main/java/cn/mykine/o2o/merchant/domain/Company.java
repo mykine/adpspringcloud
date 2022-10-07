@@ -15,7 +15,11 @@ public class Company {
 
   private String location;
 
+  private Integer provinceId;
+
   private String provinceName;
+
+  private Integer cityId;
 
   private String cityName;
 
@@ -79,5 +83,19 @@ public class Company {
     this.serveStars = serveStars;
   }
 
+  public Integer getProvinceId() {
+    return provinceId;
+  }
 
+  public void setProvinceId(Integer provinceId) {
+    this.provinceId = provinceId;
+  }
+
+  public Integer getCityId() {
+    return cityId;
+  }
+
+  public void setCityId(Integer cityId) {
+    this.cityId = cityId;
+  }
 }

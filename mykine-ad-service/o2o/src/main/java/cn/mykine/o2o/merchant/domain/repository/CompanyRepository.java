@@ -14,5 +14,10 @@ public interface CompanyRepository {
 
   List<Company> listQuery(String key);
 
+  boolean addOneSync(Company company);
+
+  void addOneAsync(Company company);
+
+  void addList(List<Company> companies);
 
 }
