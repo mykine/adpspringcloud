@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ug.aduser.infrastructure.mapper.AdClickDataMapper">
+    <resultMap id="BaseResultMap" type="ug.aduser.infrastructure.dataobject.AdClickDataDo">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="platform" jdbcType="INTEGER" property="platform"/>
+        <result column="click_id" jdbcType="VARCHAR" property="clickId"/>
+        <result column="click_time" jdbcType="BIGINT" property="clickTime"/>
+        <result column="muid" jdbcType="VARCHAR" property="muid"/>
+        <result column="ios_deviceid" jdbcType="VARCHAR" property="iosDeviceid"/>
+        <result column="imei" jdbcType="VARCHAR" property="imei"/>
+        <result column="oaid" jdbcType="VARCHAR" property="oaid"/>
+        <result column="android_id" jdbcType="VARCHAR" property="androidId"/>
+        <result column="campain_id" jdbcType="VARCHAR" property="campainId"/>
+        <result column="unit_id" jdbcType="VARCHAR" property="unitId"/>
+        <result column="ad_id" jdbcType="VARCHAR" property="adId"/>
+        <result column="ad_name" jdbcType="VARCHAR" property="adName"/>
+        <result column="material_id" jdbcType="VARCHAR" property="materialId"/>
+        <result column="channel" jdbcType="VARCHAR" property="channel"/>
+        <result column="account_id" jdbcType="VARCHAR" property="accountId"/>
+        <result column="progress" jdbcType="VARCHAR" property="progress"/>
+        <result column="active_device" jdbcType="VARCHAR" property="activeDevice"/>
+        <result column="active_time" jdbcType="BIGINT" property="activeTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="cid" jdbcType="BIGINT" property="cid"/>
+        <result column="callback_param" jdbcType="VARCHAR" property="callbackParam"/>
+        <result column="pkg" jdbcType="VARCHAR" property="pkg"/>
+        <result column="param_str" jdbcType="VARCHAR" property="paramStr"/>
+        <result column="param_int" jdbcType="INTEGER" property="paramInt"/>
+        <result column="extra" jdbcType="VARCHAR" property="extra"/>
+        <result column="create_dt" jdbcType="TIMESTAMP" property="createDt"/>
+        <result column="update_dt" jdbcType="TIMESTAMP" property="updateDt"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, platform, click_id, click_time,muid, ios_deviceid,imei, oaid,android_id, campain_id,unit_id,ad_id,ad_name,material_id,channel,account_id,progress,active_device,active_time,status,cid,callback_param,pkg,param_str,param_int,extra,create_dt,update_dt
+    </sql>
+
+    <sql id="Select_Column_List">
+        id, platform, click_id, click_time,muid, ios_deviceid,imei, oaid,android_id, campain_id,unit_id,ad_id,ad_name,material_id,channel,account_id,progress,active_device,active_time,status,cid,callback_param,pkg,param_str,param_int,extra,create_dt,update_dt
+    </sql>
+
+    <sql id="FindUserByDeviceId">
+        <if test="muid!=null and muid!=''">
+            muid = #{muid,jdbcType=VARCHAR}
+        </if>
+
+        <if test="(muid!=null and muid!='') and (iosDeviceid!=null and iosDeviceid!='')">
+            or
+        </if>
+
+        <if test="iosDeviceid!=null and iosDeviceid!=''">
+            ios_deviceid = #{iosDeviceid,jdbcType=VARCHAR}
+        </if>
+
+        <if test=" ( (muid!=null and muid!='') or (iosDeviceid!=null and iosDeviceid!='') ) and (imei!=null and imei!='') ">
+            or
+        </if>
+
+        <if test="imei!=null and imei!=''">
+            imei = #{imei,jdbcType=VARCHAR}
+        </if>
+
+        <if test=" ( (muid!=null and muid!='') or (iosDeviceid!=null and iosDeviceid!='') or (imei!=null and imei!='') ) and (oaid!=null and oaid!='') ">
+            or
+        </if>
+
+        <if test="oaid!=null and oaid!=''">
+            oaid = #{oaid,jdbcType=VARCHAR}
+        </if>
+
+        <if test=" ( (muid!=null and muid!='') or (iosDeviceid!=null and iosDeviceid!='') or (imei!=null and imei!='') or (oaid!=null and oaid!='') ) and (androidId!=null and androidId!='') ">
+            or
+        </if>
+
+        <if test="androidId!=null and androidId!=''">
+            android_id = #{androidId,jdbcType=VARCHAR}
+        </if>
+    </sql>
+
+    <sql id="FindUserByDeviceId2">
+        <if test="muid!=null and muid!=''">
+            muid = #{muid,jdbcType=VARCHAR}
+        </if>
+
+        <if test="(muid!=null and muid!='') and (iosDeviceid!=null and iosDeviceid!='')">
+            or
+        </if>
+
+        <if test="iosDeviceid!=null and iosDeviceid!=''">
+            ios_deviceid = #{iosDeviceid,jdbcType=VARCHAR}
+        </if>
+
+        <if test=" ( (muid!=null and muid!='') or (iosDeviceid!=null and iosDeviceid!='') ) and (imei!=null and imei!='') ">
+            or
+        </if>
+
+        <if test="imei!=null and imei!=''">
+            imei = #{imei,jdbcType=VARCHAR}
+        </if>
+
+        <if test=" ( (muid!=null and muid!='') or (iosDeviceid!=null and iosDeviceid!='') or (imei!=null and imei!='') ) and (oaid!=null and oaid!='') ">
+            or
+        </if>
+
+        <if test="oaid!=null and oaid!=''">
+            oaid = #{oaid,jdbcType=VARCHAR}
+        </if>
+
+        <if test=" ( (muid!=null and muid!='') or (iosDeviceid!=null and iosDeviceid!='') or (imei!=null and imei!='') or (oaid!=null and oaid!='') ) and (oaidMd5!=null and oaidMd5!='') ">
+            or
+        </if>
+
+        <if test="oaidMd5!=null and oaidMd5!=''">
+            oaid = #{oaidMd5,jdbcType=VARCHAR}
+        </if>
+
+        <if test=" ( (muid!=null and muid!='') or (iosDeviceid!=null and iosDeviceid!='') or (imei!=null and imei!='') or (oaid!=null and oaid!='') or (oaidMd5!=null and oaidMd5!='')) and (androidId!=null and androidId!='') ">
+            or
+        </if>
+
+        <if test="androidId!=null and androidId!=''">
+            android_id = #{androidId,jdbcType=VARCHAR}
+        </if>
+    </sql>
+
+
+
+    <insert id="insert" parameterType="ug.aduser.infrastructure.dataobject.AdClickDataDo">
+        insert into ad_clickdata
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="platform != null">platform,</if>
+            <if test="clickId != null">click_id,</if>
+            <if test="clickTime != null">click_time,</if>
+            <if test="muid != null">muid,</if>
+            <if test="iosDeviceid != null">ios_deviceid,</if>
+            <if test="imei != null">imei,</if>
+            <if test="oaid != null">oaid,</if>
+            <if test="androidId != null">android_id,</if>
+            <if test="campainId != null">campain_id,</if>
+            <if test="unitId != null">unit_id,</if>
+            <if test="adId != null">ad_id,</if>
+            <if test="adName != null">ad_name,</if>
+            <if test="materialId != null">material_id,</if>
+            <if test="channel != null">channel,</if>
+            <if test="accountId != null">account_id,</if>
+            <if test="progress != null">progress,</if>
+            <if test="activeDevice != null">active_device,</if>
+            <if test="activeTime != null">active_time,</if>
+            <if test="status != null">status,</if>
+            <if test="cid != null">cid,</if>
+            <if test="callbackParam != null">callback_param,</if>
+            <if test="pkg != null">pkg,</if>
+            <if test="paramStr != null">param_str,</if>
+            <if test="paramInt != null">param_int,</if>
+            <if test="extra != null">extra</if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="platform != null">#{platform,jdbcType=INTEGER},</if>
+            <if test="clickId != null">#{clickId,jdbcType=VARCHAR},</if>
+            <if test="clickTime != null">#{clickTime,jdbcType=BIGINT},</if>
+            <if test="muid != null">#{muid,jdbcType=VARCHAR},</if>
+            <if test="iosDeviceid != null">#{iosDeviceid,jdbcType=VARCHAR},</if>
+            <if test="imei != null">#{imei,jdbcType=VARCHAR},</if>
+            <if test="oaid != null">#{oaid,jdbcType=VARCHAR},</if>
+            <if test="androidId != null">#{androidId,jdbcType=VARCHAR},</if>
+            <if test="campainId != null">#{campainId,jdbcType=VARCHAR},</if>
+            <if test="unitId != null">#{unitId,jdbcType=VARCHAR},</if>
+            <if test="adId != null">#{adId,jdbcType=VARCHAR},</if>
+            <if test="adName != null">#{adName,jdbcType=VARCHAR},</if>
+            <if test="materialId != null">#{materialId,jdbcType=VARCHAR},</if>
+            <if test="channel != null">#{channel,jdbcType=VARCHAR},</if>
+            <if test="accountId != null">#{accountId,jdbcType=VARCHAR},</if>
+            <if test="progress != null">#{progress,jdbcType=VARCHAR},</if>
+            <if test="activeDevice != null">#{activeDevice,jdbcType=VARCHAR},</if>
+            <if test="activeTime != null">#{activeTime,jdbcType=BIGINT},</if>
+            <if test="status != null">#{status,jdbcType=INTEGER},</if>
+            <if test="cid != null">#{cid,jdbcType=BIGINT},</if>
+            <if test="callbackParam != null">#{callbackParam,jdbcType=VARCHAR},</if>
+            <if test="pkg != null">#{pkg,jdbcType=VARCHAR},</if>
+            <if test="paramStr != null">#{paramStr,jdbcType=VARCHAR},</if>
+            <if test="paramInt != null">#{paramInt,jdbcType=INTEGER},</if>
+            <if test="extra != null">#{extra,jdbcType=VARCHAR}</if>
+        </trim>
+
+    </insert>
+
+    <select id="selectByDeviceId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ad_clickdata
+        where
+        <if test="muid!=null and muid!=''">
+            muid = #{muid,jdbcType=VARCHAR}
+        </if>
+
+        <if test="(muid!=null and muid!='') and (iosDeviceid!=null and iosDeviceid!='')">
+            or
+        </if>
+
+        <if test="iosDeviceid!=null and iosDeviceid!=''">
+            ios_deviceid = #{iosDeviceid,jdbcType=VARCHAR}
+        </if>
+
+        <if test=" ( (muid!=null and muid!='') or (iosDeviceid!=null and iosDeviceid!='') ) and (imei!=null and imei!='') ">
+            or
+        </if>
+
+        <if test="imei!=null and imei!=''">
+            imei = #{imei,jdbcType=VARCHAR}
+        </if>
+
+        <if test=" ( (muid!=null and muid!='') or (iosDeviceid!=null and iosDeviceid!='') or (imei!=null and imei!='') ) and (oaid!=null and oaid!='') ">
+            or
+        </if>
+
+        <if test="oaid!=null and oaid!=''">
+            oaid = #{oaid,jdbcType=VARCHAR}
+        </if>
+
+        <if test=" ( (muid!=null and muid!='') or (iosDeviceid!=null and iosDeviceid!='') or (imei!=null and imei!='') or (oaid!=null and oaid!='') ) and (androidId!=null and androidId!='') ">
+            or
+        </if>
+
+        <if test="androidId!=null and androidId!=''">
+            android_id = #{androidId,jdbcType=VARCHAR}
+        </if>
+        ORDER BY click_time
+        LIMIT 20
+    </select>
+
+    <select id="selectRecordsByStatusPlatformDeviceId" resultMap="BaseResultMap">
+        select
+        <include refid="Select_Column_List"/>
+        from ad_clickdata
+        where
+          status = #{status,jdbcType=INTEGER}
+        and
+          platform = #{platform,jdbcType=INTEGER}
+        and
+        (
+          <include refid="FindUserByDeviceId"/>
+        )
+
+        ORDER BY click_time DESC
+        LIMIT 20
+
+    </select>
+
+    <select id="findOneByStatusPlatformDeviceId" resultMap="BaseResultMap">
+        select
+        <include refid="Select_Column_List"/>
+        from ad_clickdata
+        where
+        status = #{status,jdbcType=INTEGER}
+        and
+        platform = #{platform,jdbcType=INTEGER}
+        and
+        (
+        <include refid="FindUserByDeviceId"/>
+        )
+
+        ORDER BY click_time DESC
+        LIMIT 1
+
+    </select>
+
+    <select id="findOneByStatusDeviceId" resultMap="BaseResultMap">
+        select
+        <include refid="Select_Column_List"/>
+        from ad_clickdata
+        where
+        status = #{status,jdbcType=INTEGER}
+        and
+        (
+        <include refid="FindUserByDeviceId2"/>
+        )
+
+        ORDER BY click_time DESC
+        LIMIT 1
+
+    </select>
+
+
+    <update id="updateActiveDataById" parameterType="ug.aduser.infrastructure.dataobject.AdClickDataDo">
+        update ad_clickdata
+        <set>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="cid != null">
+                cid = #{cid,jdbcType=BIGINT},
+            </if>
+            <if test="activeDevice != null">
+                active_device = #{activeDevice,jdbcType=VARCHAR},
+            </if>
+            <if test="activeTime != null">
+                active_time = #{activeTime,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateActiveDataByPlatFormDeviceId" parameterType="ug.aduser.infrastructure.dataobject.AdClickDataDo">
+        update ad_clickdata
+        <set>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="cid != null">
+                cid = #{cid,jdbcType=BIGINT},
+            </if>
+            <if test="activeDevice != null">
+                active_device = #{activeDevice,jdbcType=VARCHAR},
+            </if>
+            <if test="activeTime != null">
+                active_time = #{activeTime,jdbcType=BIGINT},
+            </if>
+        </set>
+        where
+            status = 0
+            and
+            platform = #{platform,jdbcType=INTEGER}
+            and
+            (
+            <include refid="FindUserByDeviceId"/>
+            )
+    </update>
+
+    <update id="updateClickDataByStatusPlatformDeviceId" parameterType="ug.aduser.infrastructure.dataobject.AdClickDataDo">
+        update ad_clickdata
+
+        <set>
+            <if test="clickId != null"> click_id = #{clickId,jdbcType=VARCHAR}, </if>
+            <if test="clickTime != null"> click_time = #{clickTime,jdbcType=BIGINT}, </if>
+            <if test="muid != null"> muid = #{muid,jdbcType=VARCHAR},</if>
+            <if test="iosDeviceid != null"> ios_deviceid = #{iosDeviceid,jdbcType=VARCHAR}, </if>
+            <if test="imei != null"> imei = #{imei,jdbcType=VARCHAR}, </if>
+            <if test="oaid != null"> oaid = #{oaid,jdbcType=VARCHAR}, </if>
+            <if test="androidId != null"> android_id = #{androidId,jdbcType=VARCHAR},</if>
+            <if test="campainId != null"> campain_id = #{campainId,jdbcType=VARCHAR},</if>
+            <if test="unitId != null"> unit_id = #{unitId,jdbcType=VARCHAR},</if>
+            <if test="adId != null"> ad_id = #{adId,jdbcType=VARCHAR},</if>
+            <if test="adName != null"> ad_name = #{adName,jdbcType=VARCHAR},</if>
+            <if test="materialId != null"> material_id = #{materialId,jdbcType=VARCHAR},</if>
+            <if test="channel != null"> channel = #{channel,jdbcType=VARCHAR},</if>
+            <if test="accountId != null"> account_id = #{accountId,jdbcType=VARCHAR},</if>
+            <if test="progress != null"> progress = #{progress,jdbcType=VARCHAR},</if>
+            <if test="activeDevice != null">active_device = #{activeDevice,jdbcType=VARCHAR},</if>
+            <if test="activeTime != null"> active_time = #{activeTime,jdbcType=BIGINT},</if>
+            <if test="cid != null"> cid = #{cid,jdbcType=BIGINT},</if>
+            <if test="callbackParam != null"> callback_param = #{callbackParam,jdbcType=VARCHAR},</if>
+            <if test="pkg != null"> pkg = #{pkg,jdbcType=VARCHAR},</if>
+            <if test="paramStr != null"> param_str = #{param_str,jdbcType=VARCHAR},</if>
+            <if test="paramInt != null"> param_int = #{param_int,jdbcType=INTEGER},</if>
+            <if test="extra != null"> extra = #{extra,jdbcType=VARCHAR}</if>
+        </set>
+        where
+            status = #{status,jdbcType=INTEGER}
+            and
+            platform = #{platform,jdbcType=INTEGER}
+            and
+            (
+                <include refid="FindUserByDeviceId"/>
+            )
+    </update>
+
+</mapper>
+
