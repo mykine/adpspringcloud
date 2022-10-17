@@ -35,11 +35,7 @@ public class AdClickController {
     @ApiOperation("广告点击行为记录")
     @GetMapping("/record")
     public AdClickResult record(@ApiParam(value = "点击行为数据",required = true) AdClickRequest request){
-        log.info("BaidusemController setDataFromBaiduSem is {}", request);
-        log.debug("BaidusemController setDataFromBaiduSem is {}", request);
-        log.warn("BaidusemController setDataFromBaiduSem is {}", request);
-        log.error("BaidusemController setDataFromBaiduSem is {}", request);
-
+        log.info("AdClickController record ,request is {}", request);
         AdClickdataVO adClickdataVO = AdClickdataVO.builder()
                 .platform(request.getPlatform())
                 .iosDeviceid(CommonUtil.parseDeviceIdStr(request.getIdfa()))
