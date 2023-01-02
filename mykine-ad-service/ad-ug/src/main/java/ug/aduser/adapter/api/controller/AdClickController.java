@@ -36,13 +36,15 @@ public class AdClickController {
     @GetMapping("/record")
     public AdClickResult record(@ApiParam(value = "点击行为数据",required = true) AdClickRequest request){
         log.info("AdClickController record ,request is {}", request);
+        String threadName = Thread.currentThread().getName();
         AdClickdataVO adClickdataVO = AdClickdataVO.builder()
                 .platform(request.getPlatform())
                 .iosDeviceid(CommonUtil.parseDeviceIdStr(request.getIdfa()))
                 .imei(CommonUtil.parseDeviceIdStr(request.getImei_md5()))
                 .oaid(CommonUtil.parseDeviceIdStr(request.getOaid()))
                 .androidId(CommonUtil.parseDeviceIdStr(request.getAndroid_id_md5()))
-                .clickTime(request.getTs())
+//                .clickTime(request.getTs()==null ? System.currentTimeMillis() : request.getTs())
+                .clickTime(System.currentTimeMillis())
                 .adId(request.getAid())
                 .unitId(request.getUid())
                 .campainId(request.getPid())

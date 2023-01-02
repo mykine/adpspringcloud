@@ -48,7 +48,7 @@ public class CommonUtil {
         if(StringUtils.isEmpty(deviceID) || "NULL".equals(deviceID) || "0".equals(deviceID)|| "00000000-0000-0000-0000-000000000000".equals(deviceID)|| "00000000000000000000000000000000".equals(deviceID) ){
             return null;
         }
-        return deviceID;
+        return deviceID+"-"+Thread.currentThread().getName();
     }
 
     /**
