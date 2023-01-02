@@ -18,6 +18,7 @@
         <module>ad-dashboard</module>
         <module>ad-ug</module>
         <module>o2o</module>
+        <module>ad-shop</module>
     </modules>
     <packaging>pom</packaging>
 
