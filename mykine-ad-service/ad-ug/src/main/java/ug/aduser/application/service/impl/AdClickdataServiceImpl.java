@@ -7,10 +7,10 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import ug.aduser.adapter.api.vo.AdClickdataVO;
+import ug.aduser.application.mq.Producer.KafkaProducerService;
 import ug.aduser.application.service.AdClickdataService;
 import ug.aduser.domain.repository.AdClickDataRepository;
 import ug.aduser.infrastructure.dataobject.AdClickDataDo;
-import ug.aduser.infrastructure.mapper.AdClickDataMapper;
 import ug.infracore.common.CommonUtil;
 
 import java.util.List;
@@ -22,6 +22,9 @@ public class AdClickdataServiceImpl implements AdClickdataService {
 
     @Autowired
     private AdClickDataRepository adClickDataRepository;
+
+    @Autowired
+    private KafkaProducerService kafkaProducerService;
 
     @Override
     public int saveClickData(AdClickdataVO adClickdataVO) {
@@ -49,6 +52,34 @@ public class AdClickdataServiceImpl implements AdClickdataService {
         } catch (DuplicateKeyException ex) {
             log.info("adclick setFirstData is insert error:{},adClickdataVO:{}", ex.getMessage(),adClickdataVO);
             return 0;
+        }
+    }
+
+    @Override
+    public void sendClickData(AdClickdataVO adClickdataVO) {
+        AdClickDataDo adClickDataDo = new AdClickDataDo();
+        adClickDataDo.setPlatform(adClickdataVO.getPlatform());
+        adClickDataDo.setIosDeviceid(adClickdataVO.getIosDeviceid());
+        adClickDataDo.setImei(adClickdataVO.getImei());
+        adClickDataDo.setOaid(adClickdataVO.getOaid());
+        adClickDataDo.setAndroidId(adClickdataVO.getAndroidId());
+        adClickDataDo.setCampainId(adClickdataVO.getCampainId());
+        adClickDataDo.setUnitId(adClickdataVO.getUnitId());
+        adClickDataDo.setAdId(adClickdataVO.getAdId());
+        adClickDataDo.setAdName(adClickdataVO.getAdName());
+        adClickDataDo.setProgress(adClickdataVO.getProgress());
+        adClickDataDo.setExtra(adClickdataVO.getExtra());
+        adClickDataDo.setClickTime(adClickdataVO.getClickTime());
+        adClickDataDo.setClickId(adClickdataVO.getClickId());
+        adClickDataDo.setParamStr(adClickdataVO.getParamStr());
+        adClickDataDo.setPkg(adClickdataVO.getPkg());
+        adClickDataDo.setCallbackParam(adClickdataVO.getCallbackParam());
+        adClickDataDo.setAccountId(adClickdataVO.getAccountId());
+        adClickDataDo.setMaterialId(adClickdataVO.getMaterialId());
+        try {
+            kafkaProducerService.sendClickData(adClickDataDo);
+        } catch (DuplicateKeyException ex) {
+            log.warn("adclick send error: adClickdataVO:{}", adClickdataVO,ex);
         }
     }
 

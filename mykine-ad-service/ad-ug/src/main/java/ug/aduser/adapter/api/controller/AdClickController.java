@@ -64,7 +64,8 @@ public class AdClickController {
             ){
                 return AdClickResult.success(50001,"empty");
             }
-            int ret = adClickdataService.saveClickData(adClickdataVO);
+//            int ret = adClickdataService.saveClickData(adClickdataVO);
+            adClickdataService.sendClickData(adClickdataVO);
             return AdClickResult.success(0,"ok");
         }catch (Exception e){
             log.warn("BaidusemController setDataFromBaiduSem error {} ,baidusemRequest={}", e,request);

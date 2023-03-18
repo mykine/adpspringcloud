@@ -57,10 +57,11 @@ mybatis:
   config-location: classpath:mybatis/mybatis-config.xml #配置mybatis全局配置文件
   mapper-locations: classpath:mybatis/mapper/*.xml #配置mybatis的sql映射文件
 
+mq:
   kafka:
-    bootstrap-servers: 192.168.10.135:9092,192.168.10.136:9092,192.168.10.137:9092
-    listener:
-      concurrency: 4
+    bootstrap_servers: "192.168.10.135:9092,192.168.10.136:9092,192.168.10.137:9092"
+    acks_config: "all"
+#    partitioner_class: "com.imooc.jiangzh.kafka.producer.SamplePartition"
 
 eureka:
   client:
@@ -86,8 +87,8 @@ adconf:
     binlogName: mysql-bin.000007
     position: 154
 
-  kafka:
-    topic: ug-data
+#  kafka:
+#    topic: ug-data
 
 
 jwt:

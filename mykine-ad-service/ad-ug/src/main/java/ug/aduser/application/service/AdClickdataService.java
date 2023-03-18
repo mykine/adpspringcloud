@@ -14,6 +14,8 @@ public interface AdClickdataService {
 
     int saveClickData(AdClickdataVO adClickdataVO);
 
+    void sendClickData(AdClickdataVO adClickdataVO);
+
     List<AdClickDataDo> selectLastSomeRecordsByStatusPlatformDeviceId(
             Integer status,
             Integer platform ,
