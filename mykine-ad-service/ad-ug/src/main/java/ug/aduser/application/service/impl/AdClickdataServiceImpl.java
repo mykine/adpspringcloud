@@ -63,19 +63,19 @@ public class AdClickdataServiceImpl implements AdClickdataService {
         adClickDataDo.setImei(adClickdataVO.getImei());
         adClickDataDo.setOaid(adClickdataVO.getOaid());
         adClickDataDo.setAndroidId(adClickdataVO.getAndroidId());
-        adClickDataDo.setCampainId(adClickdataVO.getCampainId());
-        adClickDataDo.setUnitId(adClickdataVO.getUnitId());
+//        adClickDataDo.setCampainId(adClickdataVO.getCampainId());
+//        adClickDataDo.setUnitId(adClickdataVO.getUnitId());
         adClickDataDo.setAdId(adClickdataVO.getAdId());
         adClickDataDo.setAdName(adClickdataVO.getAdName());
-        adClickDataDo.setProgress(adClickdataVO.getProgress());
-        adClickDataDo.setExtra(adClickdataVO.getExtra());
+//        adClickDataDo.setProgress(adClickdataVO.getProgress());
+//        adClickDataDo.setExtra(adClickdataVO.getExtra());
         adClickDataDo.setClickTime(adClickdataVO.getClickTime());
         adClickDataDo.setClickId(adClickdataVO.getClickId());
-        adClickDataDo.setParamStr(adClickdataVO.getParamStr());
-        adClickDataDo.setPkg(adClickdataVO.getPkg());
-        adClickDataDo.setCallbackParam(adClickdataVO.getCallbackParam());
-        adClickDataDo.setAccountId(adClickdataVO.getAccountId());
-        adClickDataDo.setMaterialId(adClickdataVO.getMaterialId());
+//        adClickDataDo.setParamStr(adClickdataVO.getParamStr());
+//        adClickDataDo.setPkg(adClickdataVO.getPkg());
+//        adClickDataDo.setCallbackParam(adClickdataVO.getCallbackParam());
+//        adClickDataDo.setAccountId(adClickdataVO.getAccountId());
+//        adClickDataDo.setMaterialId(adClickdataVO.getMaterialId());
         try {
             kafkaProducerService.sendClickData(adClickDataDo);
         } catch (DuplicateKeyException ex) {

@@ -105,7 +105,7 @@ public class AdClickDataDo {
     private Integer status;
 
     /**
-     * 虎扑客户端id
+     * 公司客户端id
      */
     private Long cid;
 

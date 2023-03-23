@@ -52,6 +52,11 @@ public class AdClickRequest {
     private String aid;
 
     /**
+     *广告创意名称
+     */
+    private String adName;
+
+    /**
      * {{PLAN_ID}}计划ID
      */
     private String pid;

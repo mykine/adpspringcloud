@@ -46,13 +46,14 @@ public class AdClickController {
 //                .clickTime(request.getTs()==null ? System.currentTimeMillis() : request.getTs())
                 .clickTime(System.currentTimeMillis())
                 .adId(request.getAid())
-                .unitId(request.getUid())
-                .campainId(request.getPid())
+                .adName(CommonUtil.parseStrValue(request.getAdName()))
+//                .unitId(request.getUid())
+//                .campainId(request.getPid())
                 .clickId(request.getClick_id())
-                .accountId(request.getUserid())
-                .paramStr(request.getSign())
-                .callbackParam(request.getCallback_url())
-                .extra(JSON.toJSONString(request))
+//                .accountId(request.getUserid())
+//                .paramStr(request.getSign())
+//                .callbackParam(CommonUtil.parseStrValue(request.getCallback_url()))
+//                .extra(JSON.toJSONString(request))
                 .build();
         try{
             //判空

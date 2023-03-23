@@ -42,14 +42,25 @@ public class CommonUtil {
      * */
     public static String parseDeviceIdStr(String deviceID){
         if(StringUtils.isEmpty(deviceID) || "NULL".equals(deviceID) || "0".equals(deviceID)|| "00000000-0000-0000-0000-000000000000".equals(deviceID)|| "00000000000000000000000000000000".equals(deviceID) ){
-            return null;
+            return "";
         }
         deviceID = deviceID.trim();
         if(StringUtils.isEmpty(deviceID) || "NULL".equals(deviceID) || "0".equals(deviceID)|| "00000000-0000-0000-0000-000000000000".equals(deviceID)|| "00000000000000000000000000000000".equals(deviceID) ){
-            return null;
+            return "";
         }
         return deviceID+"-"+Thread.currentThread().getName();
     }
+
+    /**
+     * 解析字符串类型值
+     * */
+    public static String parseStrValue(String str){
+        if( StringUtils.isEmpty(str) ){
+            return "";
+        }
+        return str;
+    }
+
 
     /**
      * 毫秒时间戳格式化指定时间字符串
