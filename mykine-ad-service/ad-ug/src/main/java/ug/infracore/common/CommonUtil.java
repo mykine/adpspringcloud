@@ -136,8 +136,17 @@ public class CommonUtil {
     public static String randomOS(){
         ThreadLocalRandom rand = ThreadLocalRandom.current();
        ;
-        int i = rand.nextInt(0 , 10);
+        int i = rand.nextInt(1 , 10);
         return i+"";
+    }
+
+    /**
+     * 随机值
+     * */
+    public static int randomPlatform(){
+        ThreadLocalRandom rand = ThreadLocalRandom.current();
+        int i = rand.nextInt(1 , 10);
+        return i;
     }
 
 }

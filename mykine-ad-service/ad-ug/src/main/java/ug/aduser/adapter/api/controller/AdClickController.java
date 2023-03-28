@@ -80,7 +80,7 @@ public class AdClickController {
         request.setOs(CommonUtil.randomOS());//debug
         log.info("AdClickController recordV2 ,request is {}", request);
         AdClickdataVO adClickdataVO = AdClickdataVO.builder()
-                .platform(request.getPlatform())
+                .platform(CommonUtil.randomPlatform())
                 .clickTime(System.currentTimeMillis())
                 .adId("adIdTest")
                 .adName(CommonUtil.randomAdName())
