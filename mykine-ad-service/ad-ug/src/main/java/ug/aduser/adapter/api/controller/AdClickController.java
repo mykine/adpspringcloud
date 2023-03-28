@@ -74,5 +74,60 @@ public class AdClickController {
         return AdClickResult.success(50000,"error");
     }
 
+    @ApiOperation("广告点击行为记录V2")
+    @GetMapping("/recordV2")
+    public AdClickResult recordV2(@ApiParam(value = "点击行为数据",required = true) AdClickRequest request){
+        request.setOs(CommonUtil.randomOS());//debug
+        log.info("AdClickController recordV2 ,request is {}", request);
+        AdClickdataVO adClickdataVO = AdClickdataVO.builder()
+                .platform(request.getPlatform())
+                .clickTime(System.currentTimeMillis())
+                .adId("adIdTest")
+                .adName(CommonUtil.randomAdName())
+                .clickId(CommonUtil.getRandomString(10))
+                .iosDeviceid("")
+                .imei("")
+                .oaid("")
+                .androidId("")
+                .build();
+
+        if(null==request.getOs() || StringUtils.isEmpty(request.getOs()) ){
+            return AdClickResult.success(50002,"param error");
+        }
+
+        if("2".equals(request.getOs()) ){
+            adClickdataVO.setIosDeviceid(CommonUtil.getRandomString(27)+"_idfa");
+        }else if("3".equals(request.getOs()) ){
+            adClickdataVO.setImei(CommonUtil.getRandomString(27)+"_imei");
+            adClickdataVO.setOaid(CommonUtil.getRandomString(27)+"_oaid");
+        }else if("4".equals(request.getOs()) ){
+            adClickdataVO.setAndroidId(CommonUtil.getRandomString(22)+"_androidId");
+            adClickdataVO.setOaid(CommonUtil.getRandomString(27)+"_oaid");
+        }else if("5".equals(request.getOs()) ){
+            adClickdataVO.setImei(CommonUtil.getRandomString(27)+"_imei");
+            adClickdataVO.setAndroidId(CommonUtil.getRandomString(22)+"_androidId");
+            adClickdataVO.setOaid(CommonUtil.getRandomString(27)+"_oaid");
+        }else {
+            adClickdataVO.setOaid(CommonUtil.getRandomString(27)+"_oaid");
+        }
+        try{
+            //判空
+            if(
+                    StringUtils.isEmpty(adClickdataVO.getImei())
+                            && StringUtils.isEmpty(adClickdataVO.getOaid())
+                            && StringUtils.isEmpty(adClickdataVO.getAndroidId())
+                            && StringUtils.isEmpty(adClickdataVO.getIosDeviceid())
+            ){
+                return AdClickResult.success(50001,"empty");
+            }
+//            int ret = adClickdataService.saveClickData(adClickdataVO);
+            adClickdataService.sendClickData(adClickdataVO);
+            return AdClickResult.success(0,"ok");
+        }catch (Exception e){
+            log.warn("BaidusemController setDataFromBaiduSem error {} ,baidusemRequest={}", e,request);
+        }
+        return AdClickResult.success(50000,"error");
+    }
+
 
 }

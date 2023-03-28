@@ -6,11 +6,16 @@ import com.alibaba.druid.util.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
+import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * 通用工具类
  * */
 public class CommonUtil {
+
+    public static final String strStr="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     /**
      * 当前时间戳（秒）
@@ -71,4 +76,68 @@ public class CommonUtil {
         String str = df.format(dt);
         return str;
     }
+
+
+    /**
+     * 随机值
+     * */
+    public static String randomStr(String prefix){
+        ThreadLocalRandom rand = ThreadLocalRandom.current();
+        //生成一个10000~99999的伪随机整数
+        int val1 = rand.nextInt(100 , 999);
+        return prefix+"_"+System.currentTimeMillis()+"_"+val1;
+    }
+
+    /**
+     * 随机值
+     * */
+    public static String uuidStr(String prefix){
+        String uuid = UUID.randomUUID().toString();
+        uuid = uuid.replace("-", "");
+
+        return uuid;
+    }
+
+
+
+    public static String getRandomString(int length){
+
+        Random random=new Random();
+        StringBuffer sb=new StringBuffer();
+        for(int i=0;i<length;i++){
+            int number=random.nextInt(62);
+            sb.append(strStr.charAt(number));
+        }
+        return sb.toString();
+    }
+
+
+    /**
+     * 随机值
+     * */
+    public static String randomAdName(){
+        ThreadLocalRandom rand = ThreadLocalRandom.current();
+        String[] adArr = new String[]{
+                "路人王广告",
+                "NBA广告",
+                "CBA广告",
+                "英雄联盟广告",
+                "足球广告",
+                "网球广告",
+                "世界杯广告",
+        };
+        int i = rand.nextInt(0 , 5);
+        return adArr[i];
+    }
+
+    /**
+     * 随机值
+     * */
+    public static String randomOS(){
+        ThreadLocalRandom rand = ThreadLocalRandom.current();
+       ;
+        int i = rand.nextInt(0 , 10);
+        return i+"";
+    }
+
 }

@@ -93,7 +93,7 @@ public class AdClickRequest {
     private String ua;
 
     /**
-     * {{OS}}
+     * {{OS}},1-苹果,2-安卓
      */
     private String os;
 
