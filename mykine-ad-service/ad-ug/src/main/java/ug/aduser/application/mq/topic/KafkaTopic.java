@@ -5,7 +5,9 @@ import lombok.Getter;
 @Getter
 public enum KafkaTopic {
 
-    ADCLICK_MONITOR("adclickMonitor","广告点击监测");
+    ADCLICK_MONITOR("adclickMonitor","广告点击监测"),
+    USER_ACTIVE_MONITOR("user_active_monitor","登录用户的激活监测")
+    ;
 
     private String topic;
     private String desc;

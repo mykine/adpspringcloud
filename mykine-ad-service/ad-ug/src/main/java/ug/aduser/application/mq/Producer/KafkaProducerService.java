@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ug.aduser.application.mq.topic.KafkaTopic;
 import ug.aduser.infrastructure.dataobject.AdClickDataDo;
+import ug.aduser.infrastructure.dataobject.LoginUserDataDo;
 
 import java.util.concurrent.Future;
 
@@ -32,6 +33,24 @@ public class KafkaProducerService {
 //            log.info("res={}",res);
         }catch (Exception e){
             log.error("kafka send err,topic:{},record:{}",
+                    KafkaTopic.ADCLICK_MONITOR.getTopic(),record,e);
+        }
+    }
+
+
+    public void sendLoginUserData(LoginUserDataDo record){
+        ProducerRecord<String, Object> msg = new ProducerRecord<>(
+                KafkaTopic.USER_ACTIVE_MONITOR.getTopic(),
+                record.getId(),
+                JSON.toJSONString(record)
+        );
+        try {
+            producer.send(msg);
+//            Future send = producer.send(msg);
+//            Object res = send.get();
+//            log.info("res={}",res);
+        }catch (Exception e){
+            log.error("sendLoginUserData kafka send err,topic:{},record:{}",
                     KafkaTopic.ADCLICK_MONITOR.getTopic(),record,e);
         }
     }

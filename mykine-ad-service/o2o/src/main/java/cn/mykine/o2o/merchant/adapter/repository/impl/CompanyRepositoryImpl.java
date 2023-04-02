@@ -52,8 +52,8 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
   @Autowired
   private RestHighLevelClient highLevelClient;
-  @Autowired
 
+  @Autowired
   private BulkProcessor bulkProcessor;
 
   @Override

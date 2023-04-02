@@ -7,10 +7,12 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import ug.aduser.adapter.api.vo.AdClickdataVO;
+import ug.aduser.adapter.api.vo.LoginUserDataVO;
 import ug.aduser.application.mq.Producer.KafkaProducerService;
 import ug.aduser.application.service.AdClickdataService;
 import ug.aduser.domain.repository.AdClickDataRepository;
 import ug.aduser.infrastructure.dataobject.AdClickDataDo;
+import ug.aduser.infrastructure.dataobject.LoginUserDataDo;
 import ug.infracore.common.CommonUtil;
 
 import java.util.List;
@@ -80,6 +82,25 @@ public class AdClickdataServiceImpl implements AdClickdataService {
             kafkaProducerService.sendClickData(adClickDataDo);
         } catch (DuplicateKeyException ex) {
             log.warn("adclick send error: adClickdataVO:{}", adClickdataVO,ex);
+        }
+    }
+
+    @Override
+    public void sendLoginUserData(LoginUserDataVO vo){
+        LoginUserDataDo data = new LoginUserDataDo();
+        data.setId(vo.getId());
+        data.setIsNew(vo.getIsNew());
+        data.setLoginTime(vo.getLoginTime());
+        data.setIosDeviceid(vo.getIosDeviceid());
+        data.setImei(vo.getImei());
+        data.setOaid(vo.getOaid());
+        data.setAndroidId(vo.getAndroidId());
+
+
+        try {
+            kafkaProducerService.sendLoginUserData(data);
+        } catch (DuplicateKeyException ex) {
+            log.warn("sendLoginUserData send error: LoginUserDataVO:{}", vo,ex);
         }
     }
 

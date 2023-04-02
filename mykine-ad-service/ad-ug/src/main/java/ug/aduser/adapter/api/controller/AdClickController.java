@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ug.aduser.adapter.api.request.AdClickRequest;
+import ug.aduser.adapter.api.request.UserLoginRequest;
 import ug.aduser.adapter.api.vo.AdClickResult;
 import ug.aduser.adapter.api.vo.AdClickdataVO;
+import ug.aduser.adapter.api.vo.LoginUserDataVO;
 import ug.aduser.application.service.AdClickdataService;
 import ug.infracore.common.CommonUtil;
 
@@ -129,5 +131,37 @@ public class AdClickController {
         return AdClickResult.success(50000,"error");
     }
 
+
+    @ApiOperation("模拟用户登录")
+    @GetMapping("/userLogin")
+    public AdClickResult userLogin(@ApiParam(value = "模拟用户登录",required = true) UserLoginRequest request){
+        request.setUid(CommonUtil.uuidStr("uid"));//debug
+        log.info("userLogin ,request is {}", request);
+        LoginUserDataVO vo = LoginUserDataVO.builder()
+                .id(request.getUid())
+                .isNew(request.getIsNew())
+                .loginTime(System.currentTimeMillis())
+                .iosDeviceid(CommonUtil.parseStrValue(request.getIdfa()))
+                .imei(CommonUtil.parseStrValue(request.getImei()))
+                .oaid(CommonUtil.parseStrValue(request.getOaid()))
+                .androidId(CommonUtil.parseStrValue(request.getAndroidId()))
+                .build();
+        try{
+            //判空
+            if(
+                    StringUtils.isEmpty(vo.getImei())
+                            && StringUtils.isEmpty(vo.getOaid())
+                            && StringUtils.isEmpty(vo.getAndroidId())
+                            && StringUtils.isEmpty(vo.getIosDeviceid())
+            ){
+                return AdClickResult.success(50001,"empty");
+            }
+            adClickdataService.sendLoginUserData(vo);
+            return AdClickResult.success(0,"ok");
+        }catch (Exception e){
+            log.warn("userLogin error {} ,request={}", e,request);
+        }
+        return AdClickResult.success(50000,"error");
+    }
 
 }

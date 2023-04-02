@@ -60,7 +60,7 @@ public class CommonUtil {
      * 解析字符串类型值
      * */
     public static String parseStrValue(String str){
-        if( StringUtils.isEmpty(str) ){
+        if( null==str || StringUtils.isEmpty(str) ){
             return "";
         }
         return str;

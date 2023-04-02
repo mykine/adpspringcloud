@@ -3,6 +3,7 @@ package ug.aduser.application.service;
 
 import org.springframework.stereotype.Service;
 import ug.aduser.adapter.api.vo.AdClickdataVO;
+import ug.aduser.adapter.api.vo.LoginUserDataVO;
 import ug.aduser.infrastructure.dataobject.AdClickDataDo;
 
 import java.util.List;
@@ -15,6 +16,8 @@ public interface AdClickdataService {
     int saveClickData(AdClickdataVO adClickdataVO);
 
     void sendClickData(AdClickdataVO adClickdataVO);
+
+    void sendLoginUserData(LoginUserDataVO vo);
 
     List<AdClickDataDo> selectLastSomeRecordsByStatusPlatformDeviceId(
             Integer status,
